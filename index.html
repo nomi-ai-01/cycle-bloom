@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff9f7"><meta name="color-scheme" content="light dark"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Cycle Bloom"><meta name="description" content="Cycle Bloom: a private period tracker. No account, no tracking."><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="apple-touch-icon.png"><title>Cycle Bloom</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Nastaliq+Urdu:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff9f7;--card:#fff;--ink:#412a37;--mut:#8d7782;--line:#f0dfe3;--b:#e95f94;--b-d:#b93870;--b-m:#f6a2b6;--b-t:#e9b4c8;--b-s:#fff0f1;--peach:#ffe1d2;--on-b:#fff;--red:#dc2626;--ph1:#e95f94;--ph3:#f6a2b6;--ph2:#e9b4c8;--ph4:#c6a9cb;--sh:0 12px 35px rgba(117,55,76,.08);--nav:#fff}
+:root{--bg:#fff9f7;--card:#fff;--ink:#412a37;--mut:#8d7782;--line:#f0dfe3;--b:#e95f94;--b-d:#b93870;--b-m:#f6a2b6;--b-t:#e9b4c8;--b-s:#fff0f1;--peach:#ffe1d2;--on-b:#fff;--red:#dc2626;--ph1:#ef5a6f;--ph3:#5fc79a;--ph2:#58a6ee;--ph4:#a58be0;--sh:0 12px 35px rgba(117,55,76,.08);--nav:#fff}
 body[data-t=dark]{color-scheme:dark;--bg:#1d1720;--card:#2a202b;--ink:#fff2f5;--mut:#c3aeba;--line:#493644;--b:#f176a4;--b-d:#ffbad3;--b-m:#f6a2b6;--b-t:#e9b4c8;--b-s:#392735;--peach:#47313b;--on-b:#2a0a1a;--red:#ff5a52;--sh:0 12px 35px rgba(0,0,0,.16);--nav:#2a202b}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -125,10 +125,28 @@ input,select,textarea{min-height:40px;padding:8px 12px;margin:4px 0 8px;border-r
 /* insights + settings */
 .sy{margin:6px 0}.fine{margin:6px 2px;font-size:11px}
 .st .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.st label{font-size:11.5px}.st .card{padding:12px 14px;margin:0 0 8px}.st input,.st select{min-height:36px;padding:6px 10px;margin:2px 0 6px}.st button{min-height:40px;font-size:12.5px;padding:0 8px;gap:5px;margin-top:6px}.st .row>button{margin-top:6px}.st .sw.box{min-height:36px;margin:2px 0 6px}.st .fine{font-size:10.5px;margin:0 0 2px}
-@media(max-height:780px){.ring,.ring>svg{width:84px;height:84px}.rc strong{font-size:32px}.hero{padding:10px 14px;gap:6px}.hm h2{font-size:19px}.card{margin-bottom:8px;padding:11px 14px}.sg{padding:8px 6px}.bh{margin:4px 4px 6px}.tipc{display:none}h1{font-size:22px}}
+/* v7: phase colours, bigger lighter circle, label inside */
+.ring{--rs:clamp(100px,17.5vh,170px);width:var(--rs);height:var(--rs)}.ring>svg{width:var(--rs);height:var(--rs)}
+.ring .tr{stroke:color-mix(in srgb,var(--c,var(--b)) 18%,var(--card))}.ring .pg{stroke:var(--c,var(--b))}
+.rc strong{font-size:calc(var(--rs)*.4)}
+.rc i{display:block;font-size:calc(var(--rs)*.1);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-top:5px;color:var(--mut);max-width:80%;line-height:1.25}
+body.ur .rc i{letter-spacing:0;text-transform:none;font-size:calc(var(--rs)*.115)}
+.ring.red:before{background:linear-gradient(160deg,#ff8a8a,#f0505f)}
+.ring.red .rc i{color:rgba(255,255,255,.95)}
+.pc{background:color-mix(in srgb,var(--c) 18%,var(--card));color:var(--ink)}
+.g .l{background:var(--ph1);color:#fff}.g .pr{background:color-mix(in srgb,var(--ph1) 13%,var(--card));color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ph1)}.g .ov{background:color-mix(in srgb,var(--ph2) 24%,var(--card))}.g .l.ov{background:var(--ph1)}
+.k-p{background:var(--ph1)}.k-r{background:color-mix(in srgb,var(--ph1) 13%,var(--card));box-shadow:inset 0 0 0 1.5px var(--ph1)}.k-f{background:color-mix(in srgb,var(--ph2) 30%,var(--card));box-shadow:none}
+.sg{margin-top:10px}
+body.ur .hm h2,body.ur .hm .mut,body.ur .pc,body.ur .hero .cdl{line-height:1.5}body.ur .tipc p{line-height:1.6}body.ur .bh{line-height:1.5}body.ur .tl h3{line-height:1.4}body.ur button{line-height:1.4}
+.rc strong{line-height:1}.rc i{font-size:calc(var(--rs)*.082);margin-top:3px;letter-spacing:.5px}body.ur .rc i{font-size:calc(var(--rs)*.1)}
+.rc{padding-top:2px}.ring .tr,.ring .pg{stroke-width:9}
+.rc{padding:0 0 9% 0}.rc i{font-size:calc(var(--rs)*.076);max-width:62%;margin-top:4px;letter-spacing:.4px}body.ur .rc i{font-size:calc(var(--rs)*.095);max-width:70%}
+.tipc{background:none;border:0;padding:0;margin:2px 6px 0;gap:0;display:block;text-align:center}.tipc .ti,.tipc h3{display:none}.tipc p{font-size:11px;line-height:1.45}
+.nudge~.tipc{display:none}
+@media(max-height:800px){body.ur .tipc{display:none}}
+@media(max-height:700px){.tipc{display:none}.hero{padding:8px 12px}.top{height:44px}h1{font-size:21px;margin:0 0 6px}.card{padding:10px 12px;margin-bottom:7px}.st .card{padding:10px 12px;margin-bottom:6px}input,select,textarea{min-height:36px;padding:6px 10px;margin:2px 0 6px}.chip{padding:5px 10px}.chips{margin:2px 0 6px}textarea{min-height:44px}.nav,nav{padding-top:4px}}
 @media(min-width:600px){.wrap{padding:0 28px}.card{padding:25px}.hero{gap:32px}.ring,.ring>svg{width:135px;height:135px}.rc strong{font-size:48px}
 nav{bottom:18px;left:50%;right:auto;transform:translateX(-50%);width:min(580px,calc(100% - 30px));border:1px solid var(--line);border-radius:22px;padding:7px}}
-@media(max-width:380px){.hero{padding:20px;gap:14px}.ring,.ring>svg{width:96px;height:96px}.rc strong{font-size:36px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
 <div id="lock" class="pan hidden"><div class="card"><div class="brand"><i class="bm"></i>Cycle Bloom</div><h2 id="lh" style="margin-top:12px"></h2><label id="lt" for="upin"></label><input id="upin" type="password" inputmode="numeric" autocomplete="off" maxlength="4" onkeydown="if(event.key==='Enter')unlock()"><p class="err" id="uerr"></p><button class="p" id="ub" onclick="unlock()"></button><button class="q" id="fb" onclick="forgot()"></button></div></div>
@@ -239,7 +257,7 @@ if(c){const ph=phk();chip=`<span class="pc ${ph}"><i></i>${t(ph)}</span>`;cdl=`<
 if(c.mode==="p"){f=c.d/c.pl;num=c.d;lab=t("pday");sub=t("of",{n:c.pl});h2=t("pdayh",{d:c.d});m1=t("endexp",{d:fmt(add(c.s,c.pl-1))})}
 else if(c.mode==="l"){f=1;num="+"+(-c.k);lab=c.k===-1?t("dlate1"):t("dlate");h2=c.k===-1?t("late1"):t("late",{n:-c.k});m1=t("wasexp",{d:fmt(c.e)});nudge=t(-c.k>=7?"nl7":"nl")}
 else{f=cl(c.k/c.len,0,1);num=c.k;lab=c.k===0?t("due"):dn(c.k);h2=c.k===0?t("td"):c.k===1?t("tom"):t("in",{n:c.k});m1=t("pred",{d:fmt(c.e)})}}
-const red=c&&c.red;if(red)f=1;const ring=`<div class="ring${red?" red":""}" role="img" aria-label="${esc(h2)}"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="tr" cx="60" cy="60" r="50"/><circle class="pg" id="pg" cx="60" cy="60" r="50" stroke-dasharray="${CIR}" stroke-dashoffset="${CIR}" data-to="${CIR*(1-f)}"/></svg><div class="rc"><strong>${num}</strong>${sub?`<i>${sub}</i>`:""}</div></div>`;
+const red=c&&c.red;if(red)f=1;const ring=`<div class="ring${red?" red":""}${c?" "+phk():""}" role="img" aria-label="${esc(h2)}"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="tr" cx="60" cy="60" r="50"/><circle class="pg" id="pg" cx="60" cy="60" r="50" stroke-dasharray="${CIR}" stroke-dashoffset="${CIR}" data-to="${CIR*(1-f)}"/></svg><div class="rc"><strong>${num}</strong><i>${lab}</i></div></div>`;
 let tl="";if(c){const sg=segs(c.len,c.pl).filter(x=>x[1]>0),pos=cl((Math.min(c.d,c.len)-.5)/c.len*100,2,98);
 tl=`<div class="card tl"><h3>${t("jt")}</h3><div class="bar" role="img" aria-label="${t(phk())}">${sg.map(([k,n])=>`<span class="${k}" style="flex:${n}"></span>`).join("")}<em style="inset-inline-start:${pos}%"></em></div><div class="lgd">${["ph1","ph3","ph2","ph4"].map(k=>`<span class="${k}"><i></i>${t("l"+k)}</span>`).join("")}</div><p class="tip">${t("tip"+phk().slice(2))}</p></div>`}
 v.innerHTML=`<div class="hd"><small>${t("hello")}</small><h1>${t("today")}</h1></div><div class="card hero">${ring}<div class="hm"><h2>${h2}</h2><p class="mut">${m1}</p><div class="meta">${chip}${cdl}</div></div></div>${nudge?`<div class="nudge" role="status">${ico("bell")}<span>${nudge}</span></div>`:""}${tl}
