@@ -101,12 +101,20 @@ button{min-height:44px;margin-top:0;padding:8px 14px;font-size:13.5px}.row>butto
 .row+.card,.row+.sg{margin-top:10px}.p+.row{margin-top:8px}.home-btns{display:block}
 .row{gap:8px}
 nav{padding:6px 10px calc(6px + env(safe-area-inset-bottom))}nav button{min-height:46px;gap:2px;padding:4px 2px}
-/* red = glossy premium disc, no text inside */
-.ring.red>svg,.ring.red .rc{display:none}
-.ring.red:before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 26%,#ff9a9a 0,#ff4545 24%,#e11426 58%,#a30818 100%);box-shadow:0 10px 24px rgba(225,20,38,.45),inset 0 -8px 14px rgba(110,0,12,.4),inset 0 5px 9px rgba(255,255,255,.35)}
-.ring.red:after{content:"";position:absolute;left:20%;top:11%;width:38%;height:22%;border-radius:50%;background:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,0));transform:rotate(-24deg)}
-.ring.red{animation:redp 2.6s ease-in-out infinite}
-@keyframes redp{0%,100%{filter:drop-shadow(0 0 4px rgba(225,20,38,.35));transform:scale(1)}50%{filter:drop-shadow(0 0 14px rgba(225,20,38,.6));transform:scale(1.04)}}
+/* flat crisp red disc, days inside, no glow */
+:root,body[data-t=dark]{--sh:none}
+.bm img{box-shadow:none}button.p,button.d{box-shadow:none}nav{box-shadow:none}
+.hero:after{display:none}
+.hero{flex-direction:column;text-align:center;gap:8px;padding:14px 16px}
+.ring,.ring>svg{width:104px;height:104px}.rc strong{font-size:40px}.rc i{display:none}
+.hm{width:100%}.hm .mut{margin-bottom:6px}.hm h2{font-size:22px}
+.hero .meta{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}.hero .cdl{margin:0;display:inline}.pc{margin:0}
+.ring.red{animation:none;filter:none}
+.ring.red>svg{display:none}
+.ring.red:before{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(160deg,#ff3b3b,#dc1020)}
+.ring.red .rc{z-index:1}.ring.red .rc strong{color:#fff}
+.tl .tip{display:none}.tl h3{margin-bottom:6px}.bar{margin:0 0 8px}.tipc{padding:10px 14px}.tipc p{font-size:11px}.hd small{display:none}h1{margin:0 0 8px}.top{height:50px}
+.bh{font-size:11.5px;color:var(--mut);text-align:center;margin:6px 4px 8px;line-height:1.4}
 /* calendar */
 .cm{margin-bottom:8px}.g{gap:3px}.g span{padding:0 0 2px}.g button{aspect-ratio:auto;height:37px;border-radius:12px;font-size:13.5px}
 .lg{margin-top:10px;gap:4px 12px}.sel h2{font-size:17px}.sel .mut{margin:4px 0 8px}
@@ -117,6 +125,7 @@ input,select,textarea{min-height:40px;padding:8px 12px;margin:4px 0 8px;border-r
 /* insights + settings */
 .sy{margin:6px 0}.fine{margin:6px 2px;font-size:11px}
 .st .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.st label{font-size:11.5px}.st .card{padding:12px 14px;margin:0 0 8px}.st input,.st select{min-height:36px;padding:6px 10px;margin:2px 0 6px}.st button{min-height:40px;font-size:12.5px;padding:0 8px;gap:5px;margin-top:6px}.st .row>button{margin-top:6px}.st .sw.box{min-height:36px;margin:2px 0 6px}.st .fine{font-size:10.5px;margin:0 0 2px}
+@media(max-height:780px){.ring,.ring>svg{width:84px;height:84px}.rc strong{font-size:32px}.hero{padding:10px 14px;gap:6px}.hm h2{font-size:19px}.card{margin-bottom:8px;padding:11px 14px}.sg{padding:8px 6px}.bh{margin:4px 4px 6px}.tipc{display:none}h1{font-size:22px}}
 @media(min-width:600px){.wrap{padding:0 28px}.card{padding:25px}.hero{gap:32px}.ring,.ring>svg{width:135px;height:135px}.rc strong{font-size:48px}
 nav{bottom:18px;left:50%;right:auto;transform:translateX(-50%);width:min(580px,calc(100% - 30px));border:1px solid var(--line);border-radius:22px;padding:7px}}
 @media(max-width:380px){.hero{padding:20px;gap:14px}.ring,.ring>svg{width:96px;height:96px}.rc strong{font-size:36px}}
@@ -130,7 +139,7 @@ nav{bottom:18px;left:50%;right:auto;transform:translateX(-50%);width:min(580px,c
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const EN={gr:"A gentle reminder",jt:"Your cycle journey",home:"Home",cal:"Calendar",log:"Log",ins:"Insights",set:"Settings",hello:"Your space to bloom",today:"Your cycle, at a glance.",
+const EN={stb:"My period started today",enb:"My period has ended",sth:"Tap this on the first day of your period.",enh:"Tap this when your bleeding has stopped.",gr:"A gentle reminder",jt:"Your cycle journey",home:"Home",cal:"Calendar",log:"Log",ins:"Insights",set:"Settings",hello:"Your space to bloom",today:"Your cycle, at a glance.",
 dleft:"DAYS LEFT",dleft1:"DAY LEFT",due:"DUE TODAY",pday:"PERIOD DAY",dlate:"DAYS LATE",dlate1:"DAY LATE",of:"of {n} days",
 tom:"Tomorrow",td:"Today",in:"In {n} days",late1:"Late by 1 day",late:"Late by {n} days",pred:"Expected {d}",wasexp:"Was expected {d}",cd:"Cycle day {d} of {n}",cd2:"Cycle day {d}",pdayh:"Period day {d}",endexp:"Ends around {d}",
 nudge:"Keep pads and essentials handy.",nl:"Cycles vary, so it may start any day now.",nl7:"More than a week late? A check-up can help.",
@@ -153,7 +162,7 @@ saved:"Saved",wrong:"Wrong PIN",unl:"Unlock",wb:"Welcome back",ent4:"Enter your 
 o1t:"Your cycle, understood gently.",o1p:"A private journal to notice patterns and prepare with confidence.",o2t:"Let's begin with the basics.",o2d:"First day of your last period",o3t:"A little notice, when you need it.",onf:"No account. No tracking. Your story stays yours.",back:"Back",cont:"Continue",begin:"Begin",
 cal2:"Calendar file ready. Open it to add reminders.",ps:"Mark period start today?",pe:"Mark period as ended today?",ps2:"Period start saved.",pe2:"Period end saved.",nops:"No current period start found.",already:"You're already on day {d} of your period.",endbad:"Your last period started {d} days ago. Fix its date in Log.",
 imp2:"Import will replace current data. Continue?",bad:"Not a valid backup file.",pin2:"PIN must be 4 digits.",nres:"Notifications are blocked in browser settings.",nsup:"Notifications aren't supported on this browser.",cant:"Could not save"},
-UR={gr:"ایک نرم یاد دہانی",jt:"آپ کے سائیکل کا سفر",home:"ہوم",cal:"کیلنڈر",log:"اندراج",ins:"اعداد",set:"سیٹنگز",hello:"السلام علیکم",today:"آج آپ کا سائیکل",
+UR={stb:"آج میری ماہواری شروع ہوئی",enb:"میری ماہواری ختم ہو گئی",sth:"ماہواری کے پہلے دن یہ بٹن دبائیں۔",enh:"جب خون آنا بند ہو جائے تو یہ دبائیں۔",gr:"ایک نرم یاد دہانی",jt:"آپ کے سائیکل کا سفر",home:"ہوم",cal:"کیلنڈر",log:"اندراج",ins:"اعداد",set:"سیٹنگز",hello:"السلام علیکم",today:"آج آپ کا سائیکل",
 dleft:"دن باقی",dleft1:"دن باقی",due:"آج متوقع",pday:"ماہواری کا دن",dlate:"دن دیر",dlate1:"دن دیر",of:"{n} دن میں سے",
 tom:"کل",td:"آج",in:"{n} دن میں",late1:"1 دن دیر سے",late:"{n} دن دیر سے",pred:"متوقع: {d}",wasexp:"متوقع تاریخ: {d}",cd:"سائیکل کا دن {d} / {n}",cd2:"سائیکل کا دن {d}",pdayh:"ماہواری کا دن {d}",endexp:"تقریباً {d} تک",
 nudge:"ضروری چیزیں تیار رکھیں۔",nl:"سائیکل بدلتا رہتا ہے، کسی بھی دن شروع ہو سکتی ہے۔",nl7:"ایک ہفتے سے زیادہ دیر ہو تو ڈاکٹر سے چیک اپ کروائیں۔",
@@ -233,8 +242,8 @@ else{f=cl(c.k/c.len,0,1);num=c.k;lab=c.k===0?t("due"):dn(c.k);h2=c.k===0?t("td")
 const red=c&&c.red;if(red)f=1;const ring=`<div class="ring${red?" red":""}" role="img" aria-label="${esc(h2)}"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="tr" cx="60" cy="60" r="50"/><circle class="pg" id="pg" cx="60" cy="60" r="50" stroke-dasharray="${CIR}" stroke-dashoffset="${CIR}" data-to="${CIR*(1-f)}"/></svg><div class="rc"><strong>${num}</strong>${sub?`<i>${sub}</i>`:""}</div></div>`;
 let tl="";if(c){const sg=segs(c.len,c.pl).filter(x=>x[1]>0),pos=cl((Math.min(c.d,c.len)-.5)/c.len*100,2,98);
 tl=`<div class="card tl"><h3>${t("jt")}</h3><div class="bar" role="img" aria-label="${t(phk())}">${sg.map(([k,n])=>`<span class="${k}" style="flex:${n}"></span>`).join("")}<em style="inset-inline-start:${pos}%"></em></div><div class="lgd">${["ph1","ph3","ph2","ph4"].map(k=>`<span class="${k}"><i></i>${t("l"+k)}</span>`).join("")}</div><p class="tip">${t("tip"+phk().slice(2))}</p></div>`}
-v.innerHTML=`<div class="hd"><small>${t("hello")}</small><h1>${t("today")}</h1></div><div class="card hero">${ring}<div class="hm"><h2>${h2}</h2><p class="mut">${m1}</p>${chip}${cdl}</div></div>${nudge?`<div class="nudge" role="status">${ico("bell")}<span>${nudge}</span></div>`:""}${tl}
-<button class="p" onclick="startP()">${ico("drop")}${t("st")}</button><div class="row"><button onclick="endP()">${ico("check")}${t("en")}</button><button onclick="icsOut()">${ico("bell")}${t("rem")}</button></div>
+v.innerHTML=`<div class="hd"><small>${t("hello")}</small><h1>${t("today")}</h1></div><div class="card hero">${ring}<div class="hm"><h2>${h2}</h2><p class="mut">${m1}</p><div class="meta">${chip}${cdl}</div></div></div>${nudge?`<div class="nudge" role="status">${ico("bell")}<span>${nudge}</span></div>`:""}${tl}
+${c&&c.mode==="p"?`<button class="p" onclick="endP()">${ico("check")}${t("enb")}</button><p class="bh">${t("enh")}</p>`:`<button class="p" onclick="startP()">${ico("drop")}${t("stb")}</button><p class="bh">${t("sth")}</p>`}<button onclick="icsOut()">${ico("bell")}${t("remF")}</button>
 <div class="card sg"><div><strong>${avg()}</strong><span>${t("avg")}</span></div><div><strong>${avgPer()}</strong><span>${t("pl")}</span></div><div><strong>${c?fmt(c.s,{month:"short",day:"numeric"}):"—"}</strong><span>${t("lastp")}</span></div></div><div class="card tipc"><span class="ti" aria-hidden="true">✿</span><div><h3>${t("gr")}</h3><p>${t("est")}</p></div></div>`;
 const p=$("#pg");if(p)requestAnimationFrame(()=>requestAnimationFrame(()=>{p.style.strokeDashoffset=p.dataset.to}))}
 /* ---- calendar ---- */
