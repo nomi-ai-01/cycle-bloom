@@ -130,3 +130,9 @@ Background Web Push requires a provider account and a server-side function. A pu
 - PNG icons (192, 512, maskable, apple-touch) aur aap ka naya logo (GPT wala) sab sizes mein.
 
 Deploy: purani files ki jagah in sab files ko GitHub repo mein upload karein (index.html root par). Browser mein ek baar refresh karein; service worker v5 purana cache khud hata deta hai.
+
+## Update (v4) - Canva design + naya logo
+- Poora look Canva wale design jaisa: DM Sans + Fraunces fonts, naram pink rang, bare round cards, Home par ring + journey card + gentle reminder card, Calendar mein bare rounded din, neeche navigation bar.
+- Aap ka logo (Bloom Cycle Tracker) header, lock screen aur sab icons (192, 512, maskable, apple-touch, favicon) mein lag gaya.
+- Andar ka sara kaam pehle jaisa hai: IndexedDB/local data, PIN lock, notifications, .ics reminders, Urdu, export/import.
+- Deploy: zip kholein, sari files GitHub repo mein upload karein (index.html root par). Phir browser mein ek baar refresh karein; service worker v7 purana cache khud hata deta hai.
