@@ -8,23 +8,17 @@
 - The PIN is a convenience lock, not encryption. Exported JSON backups are unencrypted. Anyone with access to the unlocked device/browser profile may access local data.
 - Google Fonts are loaded online and may not be available offline. Core app assets are cached by the service worker.
 
-## File tree
+## File tree (v3)
 ```text
-cycle-bloom-pwa/
-├── index.html
-├── styles.css
-├── app.js
-├── translations.js
-├── sw.js
+cycle-bloom-main/
+├── index.html            (poori app: HTML + CSS + JS)
+├── sw.js                 (offline cache + notification click)
 ├── manifest.webmanifest
-├── icons/
-│   ├── icon-192.svg
-│   ├── icon-512.svg
-│   └── apple-touch-icon.svg
-├── netlify/
-│   └── functions/
-│       └── send-reminder.mjs
-├── netlify.toml
+├── favicon-48.png
+├── icon-192.png
+├── icon-512.png
+├── icon-maskable-512.png
+├── apple-touch-icon.png
 └── README.md
 ```
 
@@ -106,3 +100,33 @@ Background Web Push requires a provider account and a server-side function. A pu
   asli alarm lagta hai, app band ho tab bhi, bina server ke. Naya period log karne ke baad dobara dabayein.
 - PNG icons (iPhone/Android install ke liye zaroori), update-friendly service worker (v2).
 - Urdu: home screen ke messages translate hue. Baqi static labels abhi English mein hain.
+
+## Update (v3) - kya naya / theek hua
+**Home screen**
+- Ulta countdown: bara number ab "kitne din baqi" dikhata hai (28 se 0 tak) aur ring dheere dheere khali hoti hai.
+- Period se 5 din ya kam reh jayen to poora circle red ho jata hai (glow ke saath). Period late ho to bhi red + "DAYS LATE".
+- Period chal rahi ho to ring "Period day 2 of 5" dikhati hai.
+- Purana bara red "warning" box hata diya. Ab sirf chhoti si naram line aati hai (5 din ya kam reh jayen tab).
+- "In 1 days" ki ghalti theek: ab "Tomorrow" / "Today" / "In 5 days".
+- Naya cycle bar: Period / Follicular / Fertile / Luteal ke rang aur aaj ka nishan, saath mein phase ka chhota tip.
+- Poora page chhote layout mein ek screen par fit hota hai (Home, Calendar, Log, Insights).
+
+**Bugs jo theek hue**
+- Period late ho to pehle app agle cycle ki tareekh dikha deti thi; ab "Late by N days" dikhati hai.
+- "Period ended" pehle kisi bhi din dabane par period ki lambai 10 kar deti thi; ab har period ka asli end din save hota hai aur average period length usi se banti hai.
+- "Period started today" dobara dabane par naya cycle ban jata tha; ab roka jata hai.
+- Notification ab service worker se aati hai (Android par `new Notification()` kaam nahi karta). Settings mein "Send test" button hai.
+- Note mein `</textarea>` jaisa text likhne par page toot sakta tha; ab escape hota hai.
+- Calendar: agle mahine ke period se pehle aane wale fertile din ab sahi dikhte hain; future din ka "Log" button band hai.
+- Calendar file (.ics): ab agle 2 cycles, period ki tareekh ka all-day event bhi, aur "1 days" ki ghalti theek.
+- Lock button bina PIN ke chup rehta tha; ab bata deta hai.
+- Theme-color (status bar) ab dark/light ke saath badalta hai.
+
+**Naya**
+- Week Sunday / Monday / Saturday se shuru (Settings).
+- Calendar mein note wale dinon par chhota dot, saaf legend, "Today" button.
+- Insights: average period length, chart par maheene aur average line, sab se ziada aane wali alamaat.
+- Urdu mein ab har label (onboarding, install hint, Settings) translate hai.
+- PNG icons (192, 512, maskable, apple-touch) aur aap ka naya logo (GPT wala) sab sizes mein.
+
+Deploy: purani files ki jagah in sab files ko GitHub repo mein upload karein (index.html root par). Browser mein ek baar refresh karein; service worker v5 purana cache khud hata deta hai.
